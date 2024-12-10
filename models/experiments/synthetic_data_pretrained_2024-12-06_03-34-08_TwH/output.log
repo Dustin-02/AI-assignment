@@ -1,0 +1,43 @@
+Running:
+src/main.py --output_dir src/models/experiments/ --comment synthetic data pretraining --name synthetic_data_pretrained --records_file src/models/experiments/records.xls --data_dir src/datasets/ --data_class mydataset --pattern TRAIN --val_ratio 0.2 --epochs 10 --lr 0.001 --optimizer RAdam --pos_encoding learnable --d_model 64
+
+Using device: cpu
+Loading and preprocessing data ...
+800 samples may be used for training
+200 samples will be used for validation
+0 samples will be used for testing
+Creating model ...
+Model:
+TSTransformerEncoder(
+  (project_inp): Linear(in_features=5, out_features=64, bias=True)
+  (pos_enc): LearnablePositionalEncoding(
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (transformer_encoder): TransformerEncoder(
+    (layers): ModuleList(
+      (0-2): 3 x TransformerBatchNormEncoderLayer(
+        (self_attn): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=64, out_features=64, bias=True)
+        )
+        (linear1): Linear(in_features=64, out_features=256, bias=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (linear2): Linear(in_features=256, out_features=64, bias=True)
+        (norm1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (norm2): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (dropout1): Dropout(p=0.1, inplace=False)
+        (dropout2): Dropout(p=0.1, inplace=False)
+      )
+    )
+  )
+  (output_layer): Linear(in_features=64, out_features=5, bias=True)
+  (dropout1): Dropout(p=0.1, inplace=False)
+)
+Total number of parameters: 152581
+Trainable parameters: 152581
+Evaluating on validation set ...
+Validation runtime: 0.0 hours, 0.0 minutes, 0.09200000762939453 seconds
+
+Avg val. time: 0.0 hours, 0.0 minutes, 0.09200000762939453 seconds
+Avg batch val. time: 0.023000001907348633 seconds
+Avg sample val. time: 0.0004600000381469727 seconds
+Epoch 0 Validation Summary: epoch: 0.000000 | loss: 17.625620 | 
